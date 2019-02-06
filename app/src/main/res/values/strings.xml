@@ -2,4 +2,5 @@
     <string name="app_name">AndroidExample</string>
     <string name="enter_user">Ingrese un usuario de Github</string>
     <string name="search">Buscar</string>
+    <string name="wait_please">Espere por favor&#8230;</string>
 </resources>

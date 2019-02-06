@@ -4,9 +4,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.rba.data.api.ApiManager;
+import com.rba.data.api.ErrorUtil;
 import com.rba.data.datasource.UserDataStore;
 import com.rba.data.datasource.preference.SharedPreferencesUtil;
 import com.rba.data.mapper.UserMapper;
+import com.rba.data.model.ErrorResponse;
 import com.rba.data.model.UserResponse;
 import com.rba.data.util.Constant;
 import com.rba.domain.repository.UserRepositoryCallback;
@@ -41,7 +43,8 @@ public class UserServiceDataStore implements UserDataStore {
                         userRepositoryCallback.onError(Constant.ERROR_MESSAGE);
                     }
                 } else {
-                    userRepositoryCallback.onError(Constant.ERROR_MESSAGE);
+                    ErrorResponse error = ErrorUtil.parseError(response);
+                    userRepositoryCallback.onError(error.getMessage());
                 }
             }
 

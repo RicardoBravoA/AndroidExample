@@ -16,31 +16,33 @@ public class ApiManager {
     public static ApiInterface apiManager() {
 
         if (apiInterface == null) {
-
-            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-            logging.setLevel(HttpLoggingInterceptor.Level.NONE);
-
-            if (BuildConfig.DEBUG) {
-                logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-            }
-
-            OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(logging)
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(10, TimeUnit.SECONDS)
-                    .writeTimeout(10, TimeUnit.SECONDS)
-                    .build();
-
-            Retrofit client = new Retrofit.Builder()
-                    .baseUrl(BuildConfig.BASE_URL)
-                    .client(okHttpClient)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            apiInterface = client.create(ApiInterface.class);
+            apiInterface = getRetrofit().create(ApiInterface.class);
         }
 
         return apiInterface;
+    }
+
+    public static Retrofit getRetrofit() {
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.NONE);
+
+        if (BuildConfig.DEBUG) {
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        }
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .build();
+
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
 }
