@@ -20,4 +20,17 @@ public class UserMapper {
         return userModel;
     }
 
+    public UserResponse transformUserResponse(UserResponse userResponse) {
+        UserResponse userResponse1 = new UserResponse();
+        if (userResponse == null) {
+            return userResponse1;
+        }
+
+        userResponse1.setName(userResponse.getName() != null ? userResponse.getName() : EMPTY);
+        userResponse1.setLogin(userResponse.getLogin() != null ? userResponse.getLogin() : EMPTY);
+        userResponse1.setAvatarUrl(userResponse.getAvatarUrl() != null ? userResponse.getAvatarUrl() : EMPTY);
+
+        return userResponse1;
+    }
+
 }

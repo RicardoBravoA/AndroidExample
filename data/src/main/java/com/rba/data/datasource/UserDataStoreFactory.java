@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.rba.data.datasource.preference.UserPreferenceDataStore;
 import com.rba.data.datasource.service.UserServiceDataStore;
+import com.rba.data.util.NetworkUtil;
 
 public class UserDataStoreFactory {
 
@@ -20,11 +21,13 @@ public class UserDataStoreFactory {
         this.context = context;
     }
 
-    public UserDataStore create(int dataSource) {
-        UserDataStore userDataStore = null;
+    public UserDataStore create() {
+        UserDataStore userDataStore;
 
-        if (CLOUD == dataSource) {
-            userDataStore = new UserServiceDataStore();
+        int value = NetworkUtil.isInternet(context) ? CLOUD : PREFERENCES;
+
+        if (CLOUD == value) {
+            userDataStore = new UserServiceDataStore(context);
         } else {
             userDataStore = new UserPreferenceDataStore(context);
         }

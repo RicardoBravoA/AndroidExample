@@ -21,7 +21,7 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public void getUser(String user, final UserInterfaceCallback userInterfaceCallback) {
-        UserDataStore userDataStore = userDataStoreFactory.create(UserDataStoreFactory.CLOUD);
+        UserDataStore userDataStore = userDataStoreFactory.create();
         userDataStore.getUser(user, new UserRepositoryCallback() {
             @Override
             public void onSuccess(Object o) {
