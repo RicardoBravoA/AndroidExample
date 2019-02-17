@@ -5,14 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <com.rba.mylibrary.Stepper
-        android:id="@+id/st_data"
+    <TextView
+        android:id="@+id/tv_data"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:colorProgress="@color/colorProgress" />
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/show" />
+
 
 </LinearLayout>

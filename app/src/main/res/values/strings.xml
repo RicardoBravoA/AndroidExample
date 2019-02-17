@@ -1,11 +1,7 @@
 <resources>
     <string name="app_name">AndroidExample</string>
 
-    <string name="first_message">Primer mensaje</string>
-    <string name="second_message">Segundo mensaje</string>
-    <string name="third_message">Tercer mensaje</string>
-
-    <string name="message_back">Presione nuevamente para salir.</string>
+    <string name="show">Mostrar</string>
 
 
 </resources>

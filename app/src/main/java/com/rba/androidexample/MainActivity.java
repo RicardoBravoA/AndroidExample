@@ -1,24 +1,13 @@
 package com.rba.androidexample;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
-
-import com.rba.androidexample.view.fragment.OneFragment;
-import com.rba.androidexample.view.fragment.SecondFragment;
-import com.rba.androidexample.view.fragment.ThirdFragment;
-import com.rba.mylibrary.Stepper;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    boolean exit;
-    private Stepper stData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,39 +15,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        stData = findViewById(R.id.st_data);
+        final TextView tvData = findViewById(R.id.tv_data);
+        AppCompatButton btnShow = findViewById(R.id.btn_show);
         setSupportActionBar(toolbar);
 
-        loadData();
-    }
-
-    private void loadData() {
-        List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new OneFragment());
-        fragmentList.add(new SecondFragment());
-        fragmentList.add(new ThirdFragment());
-
-        stData.setData(fragmentList);
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        if (exit) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.exit = true;
-        Toast.makeText(this, getString(R.string.message_back), Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
+        btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                exit = false;
+            public void onClick(View v) {
+                tvData.setText(Util.getText());
             }
-        }, 2000);
+        });
+
     }
 
 
